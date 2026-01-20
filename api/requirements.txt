@@ -1,0 +1,4 @@
+fastapi
+uvicorn[standard]
+keystone-engine
+capstone

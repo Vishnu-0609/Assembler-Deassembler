@@ -4,16 +4,12 @@
     {
       "src": "api/index.py",
       "use": "@vercel/python"
-    },
-    {
-      "src": "public/**",
-      "use": "@vercel/static"
     }
   ],
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "api/index.py"
+      "dest": "/api/index.py"
     },
     {
       "src": "/(.*)",
@@ -22,7 +18,8 @@
   ],
   "functions": {
     "api/index.py": {
-      "maxDuration": 30
+      "maxDuration": 30,
+      "memory": 1024
     }
   }
 }
