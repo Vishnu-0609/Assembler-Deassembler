@@ -21,4 +21,5 @@ except ImportError:
     from backend.main import app
 
 # Export as handler for Vercel
+# Vercel Python runtime automatically wraps FastAPI apps
 handler = app
