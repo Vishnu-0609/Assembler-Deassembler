@@ -522,9 +522,9 @@
         <div class="dot green"></div>
       </div>
       <div class="chrome-title">asm-deasm · keystone × capstone</div>
-      <div class="chrome-right">
+      <!-- <div class="chrome-right">
         <div class="chrome-pill">localhost:8000</div>
-      </div>
+      </div> -->
     </div>
     <div class="content">
       <div class="header">
@@ -608,7 +608,7 @@ ret"
                 Hex bytes
               </span>
             </div>
-            <div id="asm-result" class="result-box"></div>
+            <div id="asm-result" class="result-box">No output yet. Click “Assemble” to see bytes here.</div>
             <div class="explanation-header" id="asm-explanation-header" style="display: none;">
               <span class="explanation-icon">💡</span>
               <span>What Your Code Does (Plain Language)</span>
@@ -688,7 +688,7 @@ ret"
                 Address · Mnemonic · Operands
               </span>
             </div>
-            <div id="dis-result" class="result-box"></div>
+            <div id="dis-result" class="result-box">No output yet. Click “Disassemble” to see instructions here.</div>
             <div class="explanation-header" id="dis-explanation-header" style="display: none;">
               <span class="explanation-icon">💡</span>
               <span>What This Code Does (Plain Language)</span>
@@ -702,10 +702,10 @@ ret"
         <span>
           Powered by <strong>Keystone</strong> (assembler) &amp; <strong>Capstone</strong> (disassembler).
         </span>
-        <span>
+        <!-- <span>
           Backend: <code>FastAPI</code> · Start with
           <code>uvicorn backend.main:app --reload</code>
-        </span>
+        </span> -->
       </div>
     </div>
   </div>
@@ -773,7 +773,7 @@ ret"
       }
       asmRunBtn.disabled = true;
       setStatus(asmMsg, "Assembling via Keystone…", "success");
-      asmResult.textContent = "";
+      asmResult.textContent = "Running…";
       try {
         const res = await fetch("/api/assemble", {
           method: "POST",
@@ -821,6 +821,7 @@ ret"
       } catch (err) {
         console.error(err);
         setStatus(asmMsg, String(err.message || err), "error");
+        asmResult.textContent = "No output. Assembly failed.";
       } finally {
         asmRunBtn.disabled = false;
       }
@@ -834,7 +835,7 @@ ret"
       }
       disRunBtn.disabled = true;
       setStatus(disMsg, "Disassembling via Capstone…", "success");
-      disResult.textContent = "";
+      disResult.textContent = "Running…";
       let base = parseInt(disBase.value || "0", 10);
       if (Number.isNaN(base) || base < 0) base = 0;
       try {
@@ -877,6 +878,7 @@ ret"
       } catch (err) {
         console.error(err);
         setStatus(disMsg, String(err.message || err), "error");
+        disResult.textContent = "; no instructions decoded";
       } finally {
         disRunBtn.disabled = false;
       }
@@ -886,7 +888,7 @@ ret"
     asmRunBtn.addEventListener("click", assemble);
     asmClearBtn.addEventListener("click", () => {
       asmInput.value = "";
-      asmResult.textContent = "";
+      asmResult.textContent = "No output yet. Click “Assemble” to see bytes here.";
       document.getElementById("asm-explanation").innerHTML = "";
       document.getElementById("asm-explanation").style.display = "none";
       document.getElementById("asm-explanation-header").style.display = "none";
@@ -895,7 +897,7 @@ ret"
     disRunBtn.addEventListener("click", disassemble);
     disClearBtn.addEventListener("click", () => {
       disInput.value = "";
-      disResult.textContent = "";
+      disResult.textContent = "No output yet. Click “Disassemble” to see instructions here.";
       document.getElementById("dis-explanation").innerHTML = "";
       document.getElementById("dis-explanation").style.display = "none";
       document.getElementById("dis-explanation-header").style.display = "none";
