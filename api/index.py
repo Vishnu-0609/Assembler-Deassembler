@@ -6,7 +6,7 @@ app = FastAPI()
 # ✅ CORS must be added immediately after app creation
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://assembler-deassembler.vercel.app"],  # later restrict
+    allow_origins=["https://assembler-deassembler-mk3lx29zp-vishnu0609s-projects.vercel.app/"],  # later restrict
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
