@@ -5,15 +5,10 @@ app = FastAPI()
 
 @app.get("/")
 def root():
-    return {"status": "Assembler API running on Vercel"}
+    return {"status": "ok"}
 
 @app.post("/api/disassemble")
 def disassemble(payload: dict):
-    code = payload.get("code", "")
-    return {
-        "input": code,
-        "output": "fake-disassembly-for-now"
-    }
+    return {"result": "ok"}
 
-# 🔥 This is REQUIRED for Vercel
 handler = Mangum(app)
