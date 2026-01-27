@@ -6,7 +6,7 @@ app = FastAPI()
 # ✅ CORS must be added immediately after app creation
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://your-vercel-app.vercel.app"],  # later restrict
+    allow_origins=["https://assembler-deassembler.vercel.app"],  # later restrict
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -17,5 +17,9 @@ def root():
     return {"status": "ok"}
 
 @app.post("/api/disassemble")
+def disassemble(payload: dict):
+    return {"result": "ok"}
+
+@app.post("/api/assemble")
 def disassemble(payload: dict):
     return {"result": "ok"}
