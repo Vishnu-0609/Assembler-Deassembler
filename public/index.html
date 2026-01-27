@@ -775,7 +775,7 @@ ret"
       setStatus(asmMsg, "Assembling via Keystone…", "success");
       asmResult.textContent = "";
       try {
-        const res = await fetch("/api/assemble", {
+        const res = await fetch("https://assembler-deassembler-production.up.railway.app/api/assemble", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -838,7 +838,7 @@ ret"
       let base = parseInt(disBase.value || "0", 10);
       if (Number.isNaN(base) || base < 0) base = 0;
       try {
-        const res = await fetch("/api/disassemble", {
+        const res = await fetch("https://assembler-deassembler-production.up.railway.app/api/disassemble", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
