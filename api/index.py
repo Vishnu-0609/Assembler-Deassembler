@@ -52,7 +52,7 @@ app = FastAPI(title="Keystone/Capstone Assembler & Disassembler")
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "https://assembler-deassembler-3t44m8qki-vishnu0609s-projects.vercel.app"
+        "https://assembler-deassembler.vercel.app"
     ],
     allow_credentials=True,
     allow_methods=["*"],
